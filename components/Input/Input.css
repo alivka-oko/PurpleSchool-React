@@ -27,3 +27,7 @@
 .input input::placeholder {
   color: #475069;
 }
+
+.input .icon {
+  width: 19px;
+}
