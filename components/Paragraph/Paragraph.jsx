@@ -1,10 +1,7 @@
 import './Paragraph.css';
 
 function Paragraph({ children, size }) {
-	let paragraphClass = 'paragraph';
-	if (size) {
-		paragraphClass = `${paragraphClass} ${paragraphClass}-${size}`;
-	}
+	let paragraphClass = size?`paragraph paragraph-${size}`: 'paragraph' ;
 	return (
 		<p className={paragraphClass}>
 			{children}

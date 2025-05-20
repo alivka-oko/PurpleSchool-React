@@ -1,4 +1,13 @@
-body{
+body {
   background-color: #121829;
-  font-family: "Poppins", Arial, Helvetica, sans-serif;
+  background-image: url(/public/background.png);
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  color: #ebeef5;
+}
+.container {
+  max-width: 1260px;
+  margin: 0 auto;
+  width: 100%;
+  padding-right: 30px;
+  padding-left: 30px;
 }
