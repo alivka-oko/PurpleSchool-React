@@ -6,6 +6,8 @@ import Header from '../layout/Header/Header';
 import Menu from '../components/Menu/Menu';
 import Body from '../layout/Body/Body';
 import Input from '../components/Input/Input';
+import mockData from './assets/data/mockData.js';
+import Cards from '../components/Cards/Cards.jsx';
 
 function App() {
 	const search = () => {
@@ -21,21 +23,26 @@ function App() {
 					<a href='#' className='menu-link'>
             Мои фильмы
 					</a>
-					<a href='#' className='menu-link'>
-            Войти
+					<a href='#' className='menu-link login'>
+            Войти <img src='/login.svg' alt='иконка двери' className='icon' />
 					</a>
 				</Menu>
 			</Header>
 			<Body>
-				<Title>Поиск</Title>
-				<Paragraph size='small'>
-          Введите название фильма, сериала или мультфильма для поиска и
-          добавления в избранное.
-				</Paragraph>
-				<Paragraph>Стандартный параграф</Paragraph>
-				<Input placeholder={'Без иконки'}></Input>
-				<Button text={'Искать'} onClick={search} />
-				<Input placeholder={'Введите название'} icon='search'></Input>
+				<div className='search-area'>
+					<div className='search-area-title'>
+						<Title>Поиск</Title>
+						<Paragraph size='small'>
+              Введите название фильма, сериала или мультфильма для поиска и
+              добавления в избранное.
+						</Paragraph>
+					</div>
+					<div className='search-area-input'>
+						<Input placeholder={'Введите название'} icon='search'></Input>
+						<Button text={'Искать'} onClick={search} />
+					</div>
+				</div>
+				<Cards data={mockData} />
 			</Body>
 		</>
 	);

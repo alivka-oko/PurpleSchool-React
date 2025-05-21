@@ -11,6 +11,10 @@
   background: rgba(0, 0, 0, 0.1);
   border: 1px solid #323b54;
   border-radius: 12px;
+  transition: border 0.1s ease-in;
+}
+.input:hover {
+  border: 1px solid #444f6e;
 }
 .input input {
   background: transparent;
@@ -30,4 +34,8 @@
 
 .input .icon {
   width: 19px;
+}
+
+.input:has(input:focus) {
+  border: 1px solid #808db3;
 }
