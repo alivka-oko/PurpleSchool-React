@@ -1,10 +1,10 @@
-import './Header.css';
+import styles from './Header.module.css';
 
 function Header({ children }) {
 	return (
-		<header className='header'>
-			<div className='container'>
-				<img className='logo' src='/logo.svg'></img>
+		<header className={styles['header']}>
+			<div className={styles['container']}>
+				<img className={styles['logo']} src='/logo.svg'></img>
 				{children}
 			</div>
 		</header>

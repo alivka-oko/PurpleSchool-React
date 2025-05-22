@@ -1,9 +1,10 @@
-import './Body.css';
+import styles from './Body.module.css';
+import cn from 'classnames';
 
 function Body({ children }) {
 	return (
 		<>
-			<div className='body container'>{children}</div>
+			<div className={cn(styles['body'], 'container')}>{children}</div>
 		</>
 	);
 }
