@@ -17,20 +17,3 @@ body {
   padding-right: 30px;
   padding-left: 30px;
 }
-
-.search-area {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  padding: 80px 0;
-}
-.search-area-title {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  max-width: 588px;
-}
-.search-area-input {
-  display: flex;
-  gap: 8px;
-}
