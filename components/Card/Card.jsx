@@ -1,12 +1,12 @@
-import './Card.css';
+import styles from './Card.module.css';
 
 function Card({ data }) {
 	return (
-		<div className='card'>
-			<div className='card-content'>
-				<div className='card-top'>
-					<div className='card-rating'>
-						<img src='/rating.svg' alt='рейтинг' className='rating' />
+		<div className={styles['card']}>
+			<div className={styles['card-content']}>
+				<div className={styles['card-top']}>
+					<div className={styles['card-rating']}>
+						<img src='/rating.svg' alt='рейтинг' className={styles['rating']} />
 
 						{data.rating}
 					</div>
@@ -14,18 +14,18 @@ function Card({ data }) {
 						<img
 							src={data.posterUrl}
 							alt={'Постер ' + data.title}
-							className='card-image'
+							className={styles['card-image']}
 						/>
 					</a>
 				</div>
-				<div className='card-bottom'>
-					<div className='card-title'>{data.title}</div>
-					<button className='card-favorite-button'>
+				<div className={styles['card-bottom']}>
+					<div className={styles['card-title']}>{data.title}</div>
+					<button className={styles['card-favorite-button']}>
 						<img src='/like.svg' alt='в избранное' /> В избранное
 					</button>
 				</div>
 			</div>
-			<img src={data.posterUrl} alt='' className='card-bg-image' />
+			<img src={data.posterUrl} alt='' className={styles['card-bg-image']} />
 		</div>
 	);
 }

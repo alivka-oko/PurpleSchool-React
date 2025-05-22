@@ -1,4 +1,4 @@
-import './Button.css';
+import styles from './Button.module.css';
 
 function Button({ text, onClick }) {
 	const buttonClick = onClick
@@ -7,7 +7,7 @@ function Button({ text, onClick }) {
 			console.log(`Я кнопка: ${text}`);
 		};
 	return (
-		<button className='button' onClick={buttonClick}>
+		<button className={styles['button']} onClick={buttonClick}>
 			{' '}
 			{text}{' '}
 		</button>
