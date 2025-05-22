@@ -16,17 +16,7 @@ function App() {
 	return (
 		<>
 			<Header>
-				<Menu>
-					<a href='#' className='menu-link'>
-            Поиск фильмов
-					</a>
-					<a href='#' className='menu-link'>
-            Мои фильмы
-					</a>
-					<a href='#' className='menu-link login'>
-            Войти <img src='/login.svg' alt='иконка двери' className='icon' />
-					</a>
-				</Menu>
+				<Menu/>				
 			</Header>
 			<Body>
 				<div className='search-area'>
