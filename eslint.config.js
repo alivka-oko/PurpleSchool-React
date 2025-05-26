@@ -32,7 +32,7 @@ export default [
 				{ allowConstantExport: true }
 			],
 			'react/react-in-jsx-scope': 'off',
-			'react/prop-types': 'off',
+			'react/prop-types': [0],
 			'react/jsx-no-target-blank': 'error',
 			semi: ['error', 'always', { omitLastInOneLineBlock: false }],
 			'comma-dangle': ['error', 'never'],
