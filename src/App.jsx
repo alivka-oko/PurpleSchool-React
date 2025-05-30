@@ -31,15 +31,18 @@ function App() {
 		}
 	}, [users]);
 
-	const toggleLogin = () => {
-		if (loggedUser) {
-			setLoggedUser({});
-		}
+	const logout = () => {
+		const updatedUsers = users.map((u) => ({
+			...u,
+			isLogined: false
+		}));
+		setUsers(updatedUsers);
+		setLoggedUser({});
 	};
 	return (
 		<>
 			<Header>
-				<Menu user={loggedUser} toggleLogin={toggleLogin} />
+				<Menu user={loggedUser} logout={logout} />
 			</Header>
 			<Body>
 				<SearchArea />

@@ -1,7 +1,7 @@
 import styles from './Menu.module.css';
 import cn from 'classnames';
 
-function Menu({ user, toggleLogin }) {
+function Menu({ user, logout }) {
 	return (
 		<div className={styles['menu']}>
 			<a href='#' className={styles['menu-link']}>
@@ -19,7 +19,7 @@ function Menu({ user, toggleLogin }) {
 				''
 			)}
 			<button
-				onClick={toggleLogin}
+				onClick={logout}
 				className={cn(styles['menu-link'], styles['login'])}
 			>
 				{user && user.name ? (

@@ -8,8 +8,7 @@ function Button({ text, className, ...props }) {
 			}
 			{...props}
 		>
-			{' '}
-			{text}{' '}
+			{text}
 		</button>
 	);
 }
