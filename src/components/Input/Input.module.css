@@ -39,3 +39,6 @@
 .input:has(input:focus) {
   border: 1px solid #808db3;
 }
+.input:has(input.invalid:focus) {
+  border: 1px solid red !important;
+}
