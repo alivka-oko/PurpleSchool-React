@@ -18,9 +18,18 @@ function Menu({ user, toggleLogin }) {
 			) : (
 				''
 			)}
-			<button onClick={toggleLogin} className={cn(styles['menu-link'], styles['login'])}>
-				{user && user.name ? 'Выйти ' : 'Войти'}{' '}
-				<img src='/login.svg' alt='иконка двери' className='icon' />
+			<button
+				onClick={toggleLogin}
+				className={cn(styles['menu-link'], styles['login'])}
+			>
+				{user && user.name ? (
+					'Выйти '
+				) : (
+					<>
+						{'Войти'}
+						<img src='/login.svg' alt='иконка двери' className='icon' />
+					</>
+				)}
 			</button>
 		</div>
 	);
