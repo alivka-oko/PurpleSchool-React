@@ -30,5 +30,10 @@ export function formReducer(state, action) {
 	}
 	case 'RESET':
 		return INITIAL_STATE;
+	case 'RESET_VALIDITY':
+		return {
+			...state,
+			isValid: INITIAL_STATE.isValid
+		};
 	}
 }

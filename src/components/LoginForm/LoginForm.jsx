@@ -22,8 +22,7 @@ function LoginForm({ onSubmit }) {
 		if (!isValid.login) {
 			loginObject.current.focus();
 			timerId = setTimeout(() => {
-				dispatchForm({ type: 'RESET' });
-				console.log('Чистим');
+				dispatchForm({ type: 'RESET_VALIDITY' });
 			}, 1000);
 		}
 		return () => {
