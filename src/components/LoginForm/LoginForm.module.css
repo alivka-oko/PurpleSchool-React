@@ -1,0 +1,15 @@
+.login-area {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.login-area-input {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.button {
+  width: max-content;
+}

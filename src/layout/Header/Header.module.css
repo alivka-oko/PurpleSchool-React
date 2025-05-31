@@ -8,6 +8,14 @@
   justify-content: space-between;
 }
 
+.container {
+  max-width: 1260px;
+  margin: 0 auto;
+  width: 100%;
+  padding-right: 30px;
+  padding-left: 30px;
+}
+
 .header .logo {
   width: 30px;
 }
