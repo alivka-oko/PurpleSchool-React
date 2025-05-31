@@ -3,15 +3,16 @@ import Input from '../Input/Input';
 import Button from '../Button/Button';
 import Title from '../Title/Title';
 import { useEffect, useRef } from 'react';
-import { useReducer } from 'react';
+import { useReducer, useContext } from 'react';
 import { formReducer, INITIAL_STATE } from './LoginForm.state';
-
-function LoginForm({ onSubmit }) {
+import { UserContext } from '../../context/user.context';
+function LoginForm() {
+	const { login } = useContext(UserContext);
 	const [formState, dispatchForm] = useReducer(formReducer, INITIAL_STATE);
 	const { values, isFormReadyToSubmit, isValid } = formState;
 	const loginObject = useRef();
 
-	const login = (e) => {
+	const send = (e) => {
 		e.preventDefault();
 		isValid.login = true;
 		dispatchForm({ type: 'SUBMIT' });
@@ -32,10 +33,10 @@ function LoginForm({ onSubmit }) {
 
 	useEffect(() => {
 		if (isFormReadyToSubmit) {
-			onSubmit({ name: values.login });
+			login({ name: values.login });
 			dispatchForm({ type: 'RESET' });
 		}
-	}, [onSubmit, isFormReadyToSubmit, values.login]);
+	}, [login, isFormReadyToSubmit, values.login]);
 
 	const inputChange = (e) => {
 		dispatchForm({
@@ -45,7 +46,7 @@ function LoginForm({ onSubmit }) {
 	};
 
 	return (
-		<form className={styles['login-area']} onSubmit={login}>
+		<form className={styles['login-area']} onSubmit={send}>
 			<div className={styles['login-area-title']}>
 				<Title>Вход</Title>
 			</div>

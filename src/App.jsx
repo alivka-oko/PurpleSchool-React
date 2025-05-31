@@ -6,50 +6,20 @@ import mockData from './assets/data/mockData';
 import Cards from './components/Cards/Cards';
 import SearchArea from './components/SearchArea/SearchArea';
 import LoginForm from './components/LoginForm/LoginForm';
-import { useLocalStorage } from './hooks/useLocalStorage.hook';
-import { useEffect, useState } from 'react';
+import { UserContextProvider } from './context/user.context';
 
 function App() {
-	const [users, setUsers] = useLocalStorage('users');
-	const [loggedUser, setLoggedUser] = useState({});
-	const loging = (user) => {
-		const userExists = users.find((u) => u.name === user.name);
-		const updatedUsers = users.map((u) => ({
-			...u,
-			isLogined: user.name === u.name
-		}));
-		if (!userExists) {
-			updatedUsers.push({ ...user, isLogined: true });
-		}
-		setUsers(updatedUsers);
-	};
-
-	useEffect(() => {
-		const activeUser = users.find((u) => u.isLogined === true);
-		if (activeUser) {
-			setLoggedUser(activeUser);
-		}
-	}, [users]);
-
-	const logout = () => {
-		const updatedUsers = users.map((u) => ({
-			...u,
-			isLogined: false
-		}));
-		setUsers(updatedUsers);
-		setLoggedUser({});
-	};
 	return (
-		<>
+		<UserContextProvider>
 			<Header>
-				<Menu user={loggedUser} logout={logout} />
+				<Menu />
 			</Header>
 			<Body>
 				<SearchArea />
 				<Cards data={mockData} />
-				<LoginForm onSubmit={loging} />
+				<LoginForm />
 			</Body>
-		</>
+		</UserContextProvider>
 	);
 }
 
