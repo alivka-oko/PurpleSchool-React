@@ -6,7 +6,7 @@ import mockData from './assets/data/mockData';
 import Cards from './components/Cards/Cards';
 import SearchArea from './components/SearchArea/SearchArea';
 import LoginForm from './components/LoginForm/LoginForm';
-import { UserContextProvider } from './context/user.context';
+import { UserContextProvider } from './context/UserContextProvider';
 
 function App() {
 	return (
