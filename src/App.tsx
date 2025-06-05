@@ -1,4 +1,4 @@
-import './App.module.css';
+import './App.css';
 import Header from './layout/Header/Header';
 import Menu from './components/Menu/Menu';
 import Body from './layout/Body/Body';

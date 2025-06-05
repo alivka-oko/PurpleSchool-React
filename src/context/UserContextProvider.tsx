@@ -16,21 +16,19 @@ export function UserContextProvider({ children }: UserContextProviderProps) {
   };
 
   const login = (login: string) => {
-    if (users.length !== 0) {
-      const userExists = users.find((u) => u.name === login);
-      const updatedUsers = users.map((u) => ({
-        ...u,
-        isLogined: login === u.name,
-      }));
-      if (!userExists) {
-        updatedUsers.push({
-          name: login,
-          isLogined: true,
-          id: lastId(users) + 1,
-        });
-      }
-      setUsers(updatedUsers);
+    const userExists = users.find((u) => u.name === login);
+    const updatedUsers = users.map((u) => ({
+      ...u,
+      isLogined: login === u.name,
+    }));
+    if (!userExists) {
+      updatedUsers.push({
+        name: login,
+        isLogined: true,
+        id: lastId(users) + 1,
+      });
     }
+    setUsers(updatedUsers);
   };
 
   useEffect(() => {
