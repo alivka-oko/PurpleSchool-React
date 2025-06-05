@@ -1,6 +1,7 @@
 import styles from './Card.module.css';
+import { CardProps } from './CardProps';
 
-function Card({ data }) {
+function Card({ data }: CardProps) {
 	return (
 		<div className={styles['card']}>
 			<div className={styles['card-content']}>

@@ -9,18 +9,18 @@ import LoginForm from './components/LoginForm/LoginForm';
 import { UserContextProvider } from './context/UserContextProvider';
 
 function App() {
-	return (
-		<UserContextProvider>
-			<Header>
-				<Menu />
-			</Header>
-			<Body>
-				<SearchArea />
-				<Cards data={mockData} />
-				<LoginForm />
-			</Body>
-		</UserContextProvider>
-	);
+  return (
+    <UserContextProvider>
+      <Header>
+        <Menu />
+      </Header>
+      <Body>
+        <SearchArea />
+        <Cards data={mockData} />
+        <LoginForm />
+      </Body>
+    </UserContextProvider>
+  );
 }
 
 export default App;
