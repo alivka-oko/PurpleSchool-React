@@ -2,7 +2,7 @@ import styles from './LoginForm.module.css';
 import Input from '../Input/Input';
 import Button from '../Button/Button';
 import Title from '../Title/Title';
-import { useEffect, useRef } from 'react';
+import { ChangeEvent, FormEvent, InputEvent, useEffect, useRef } from 'react';
 import { useReducer, useContext } from 'react';
 import { formReducer, INITIAL_STATE } from './LoginForm.state';
 import { UserContext } from '../../context/user.context';
@@ -13,7 +13,7 @@ function LoginForm() {
   const { values, isFormReadyToSubmit, isValid } = formState;
   const loginObject = useRef<HTMLInputElement>(null);
 
-  const send = (e) => {
+  const send = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     isValid.login = true;
     dispatchForm({ type: 'SUBMIT' });
@@ -39,7 +39,7 @@ function LoginForm() {
     }
   }, [login, isFormReadyToSubmit, values.login]);
 
-  const inputChange = (e) => {
+  const inputChange = (e: ChangeEvent<HTMLInputElement>) => {
     dispatchForm({
       type: 'SET_VALUE',
       payload: { [e.target.name]: e.target.value },
