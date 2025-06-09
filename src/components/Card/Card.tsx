@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styles from './Card.module.css';
 import { CardProps } from './CardProps';
 
@@ -11,13 +12,13 @@ function Card({ data }: CardProps) {
 
 						{data.rating}
 					</div>
-					<a href='#'>
+					<Link to={`/movie/${data.id}`}>
 						<img
 							src={data.posterUrl}
 							alt={'Постер ' + data.title}
 							className={styles['card-image']}
 						/>
-					</a>
+					</Link>
 				</div>
 				<div className={styles['card-bottom']}>
 					<div className={styles['card-title']}>{data.title}</div>

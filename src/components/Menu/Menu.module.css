@@ -1,33 +1,37 @@
 .menu {
-  display: flex;
-  gap: 16px;
-  align-items: center;
+	display: flex;
+	gap: 16px;
+	align-items: center;
 }
 
 .menu-link,
 .user {
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 24px;
-  letter-spacing: 0.02em;
-  color: #a8aebf;
-  transition: color 0.15s ease-in;
-  display: block;
-  padding: 12px 16px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
+	font-weight: 600;
+	font-size: 16px;
+	line-height: 24px;
+	letter-spacing: 0.02em;
+	color: #a8aebf;
+	transition: color 0.15s ease-in;
+	display: block;
+	padding: 12px 16px;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	background: transparent;
+	border: none;
+	cursor: pointer;
 }
 
 .menu-link:hover {
-  color: #ffffff;
+	color: #ffffff;
 }
 .icon {
-  transition: filter 0.15s ease-in;
+	transition: filter 0.15s ease-in;
 }
 .menu-link:hover .icon {
-  filter: contrast(5);
+	filter: contrast(5);
+}
+
+.active {
+	color: #ffffff;
 }
