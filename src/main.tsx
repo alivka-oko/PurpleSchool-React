@@ -32,12 +32,14 @@ const routes = createBrowserRouter([
 				errorElement: <>Ошибка</>,
 				element: <Movie />,
 				loader: ({ params }) => {
-					console.log(params.id);
 					return {
-						data: new Promise((resolve) => {
+						data: new Promise((resolve, reject) => {
 							axios
 								.get(PREFIX_URL + `/?tt=${params.id}`)
-								.then((response) => resolve(response.data));
+								.then((response) => resolve(response.data))
+								.catch((err) => {
+									reject(err);
+								});
 						}),
 					};
 				},

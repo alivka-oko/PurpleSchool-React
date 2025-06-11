@@ -22,8 +22,8 @@ a {
 }
 
 .loader {
-	border: 10px solid #7b6ef6;
-	border-top: 10px solid #2c246d;
+	border: 5px solid #7b6ef6;
+	border-top: 5px solid #2c246d;
 	border-radius: 50%;
 	width: 40px;
 	height: 40px;
