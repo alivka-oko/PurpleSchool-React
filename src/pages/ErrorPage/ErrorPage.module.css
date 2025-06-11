@@ -1,0 +1,18 @@
+.error-page {
+	display: block;
+}
+.error {
+	font-weight: 600;
+	font-size: 35px;
+	line-height: 56px;
+	letter-spacing: -0.02em;
+
+	color: #ebeef5;
+}
+.message {
+	font-weight: 400;
+	font-size: 20px;
+	line-height: 32px;
+
+	color: #767e94;
+}

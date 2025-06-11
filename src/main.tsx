@@ -3,11 +3,13 @@ import { createRoot } from 'react-dom/client';
 import './index.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Layout } from './layout/Layout/Layout';
-import { Main } from './pages/Main/Main';
+import { Home } from './pages/Home/Home';
 import { Login } from './pages/Login/Login';
-import { Error } from './pages/Error/Error';
+import { ErrorPage } from './pages/ErrorPage/ErrorPage';
 import { Favorites } from './pages/Favorites/Favorites';
 import { Movie } from './pages/Movie/Movie';
+import axios from 'axios';
+import { PREFIX_URL } from './helpers/api';
 const routes = createBrowserRouter([
 	{
 		path: '/',
@@ -15,7 +17,7 @@ const routes = createBrowserRouter([
 		children: [
 			{
 				path: '/',
-				element: <Main />,
+				element: <Home />,
 			},
 			{
 				path: 'login',
@@ -23,15 +25,26 @@ const routes = createBrowserRouter([
 			},
 			{
 				path: 'favorites',
-				element: <Favorites/>
+				element: <Favorites />,
 			},
 			{
 				path: 'movie/:id',
-				element: <Movie/>
+				errorElement: <>Ошибка</>,
+				element: <Movie />,
+				loader: ({ params }) => {
+					console.log(params.id);
+					return {
+						data: new Promise((resolve) => {
+							axios
+								.get(PREFIX_URL + `/?tt=${params.id}`)
+								.then((response) => resolve(response.data));
+						}),
+					};
+				},
 			},
 			{
 				path: '*',
-				element: <Error />,
+				element: <ErrorPage />,
 			},
 		],
 	},

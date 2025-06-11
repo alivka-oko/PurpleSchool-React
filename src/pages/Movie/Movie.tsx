@@ -1,6 +1,19 @@
-import { useParams } from 'react-router-dom';
+import { Suspense } from 'react';
+import { Await, useLoaderData } from 'react-router-dom';
+import Loading from '../../components/Loading/Loading';
+import { IMovieDetails } from '../../interfaces/IMovieDetails';
 
 export function Movie() {
-	const { id } = useParams();
-	return <>Карточка {id}</>;
+	const { data } = useLoaderData() as { data: IMovieDetails };
+	return (
+		<>
+			<Suspense fallback={<Loading />}>
+				<Await resolve={data}>
+					{(movie) => {
+						return <>Title: {movie.short.name}</>;
+					}}
+				</Await>
+			</Suspense>
+		</>
+	);
 }

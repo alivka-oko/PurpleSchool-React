@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import styles from './Menu.module.css';
 import cn from 'classnames';
 import { UserContext } from '../../context/user.context';
-import { IUserContext } from '../../Types/IUserConext';
+import { IUserContext } from '../../interfaces/IUserConext';
 import { NavLink } from 'react-router-dom';
 
 function Menu() {

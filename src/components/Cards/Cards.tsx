@@ -6,7 +6,7 @@ function Cards({ data }: CardsProps) {
 	return (
 		<div className={styles['cards']}>
 			{data.map((item) => {
-				return <Card data={item} key={item.id} />;
+				return <Card data={item} key={item['#IMDB_ID'].slice(2)} />;
 			})}
 		</div>
 	);
