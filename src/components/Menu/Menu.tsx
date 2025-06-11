@@ -2,17 +2,29 @@ import { useContext } from 'react';
 import styles from './Menu.module.css';
 import cn from 'classnames';
 import { UserContext } from '../../context/user.context';
+import { IUserContext } from '../../Types/IUserConext';
+import { NavLink } from 'react-router-dom';
 
 function Menu() {
-	const { loggedUser, logout } = useContext(UserContext);
+	const { loggedUser, logout } = useContext<IUserContext>(UserContext);
 	return (
 		<div className={styles['menu']}>
-			<a href='#' className={styles['menu-link']}>
-        Поиск фильмов
-			</a>
-			<a href='#' className={styles['menu-link']}>
-        Мои фильмы
-			</a>
+			<NavLink
+				to={'/'}
+				className={({ isActive }) =>
+					cn(styles['menu-link'], { [styles['active']]: isActive })
+				}
+			>
+				Поиск фильмов
+			</NavLink>
+			<NavLink
+				to={'/favorites'}
+				className={({ isActive }) =>
+					cn(styles['menu-link'], { [styles['active']]: isActive })
+				}
+			>
+				Мои фильмы
+			</NavLink>
 			{loggedUser && loggedUser.name ? (
 				<a href='#' className={cn(styles['user'])}>
 					{loggedUser.name}{' '}
@@ -26,16 +38,20 @@ function Menu() {
 					onClick={logout}
 					className={cn(styles['menu-link'], styles['login'])}
 				>
-          Выйти
+					Выйти
 				</button>
 			) : (
-				<button
-					onClick={logout}
-					className={cn(styles['menu-link'], styles['login'])}
+				<NavLink
+					to={'/login'}
+					className={({ isActive }) =>
+						cn(styles['menu-link'], styles['login'], {
+							[styles['active']]: isActive,
+						})
+					}
 				>
-          Войти
+					Войти
 					<img src='/login.svg' alt='иконка двери' className='icon' />
-				</button>
+				</NavLink>
 			)}
 		</div>
 	);
