@@ -12,11 +12,12 @@ export function Home() {
 	const [movies, setMovies] = useState<IMovie[]>([]);
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const [searchQuery, setSearchQuery] = useState<string>('');
-	const [error, setError] = useState<string | undefined>();
+	const [error, setError] = useState<string | null>();
 	const [wasSearched, setWasSearched] = useState(false);
 	async function getMovies() {
 		try {
 			setIsLoading(true);
+			setError(null);
 			const { data } = await axios.get<{
 				description: IMovie[];
 				usage: string;
@@ -28,7 +29,6 @@ export function Home() {
 			setIsLoading(false);
 		} catch (e) {
 			setIsLoading(false);
-			console.log(e);
 			if (axios.isAxiosError(e)) {
 				console.log('Ошибка ' + e.message);
 				setError(e.message);
