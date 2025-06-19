@@ -10,6 +10,7 @@ import { Favorites } from './pages/Favorites/Favorites';
 import { Movie } from './pages/Movie/Movie';
 import axios from 'axios';
 import { PREFIX_URL } from './helpers/api';
+import { AuthRequire } from './helpers/AuthRequire';
 const routes = createBrowserRouter([
 	{
 		path: '/',
@@ -17,7 +18,11 @@ const routes = createBrowserRouter([
 		children: [
 			{
 				path: '/',
-				element: <Home />,
+				element: (
+					<AuthRequire>
+						<Home />
+					</AuthRequire>
+				),
 			},
 			{
 				path: 'login',
@@ -25,7 +30,11 @@ const routes = createBrowserRouter([
 			},
 			{
 				path: 'favorites',
-				element: <Favorites />,
+				element: (
+					<AuthRequire>
+						<Favorites />
+					</AuthRequire>
+				),
 			},
 			{
 				path: 'movie/:id',
