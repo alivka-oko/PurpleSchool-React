@@ -3,6 +3,7 @@ body {
   background-image: url(/background.png);
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: top;
   font-family: "Open Sans", Arial, Helvetica, sans-serif;
   color: #ebeef5;
 }
