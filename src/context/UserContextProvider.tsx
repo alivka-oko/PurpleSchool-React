@@ -2,7 +2,7 @@ import { useLocalStorage } from '../hooks/useLocalStorage.hook';
 import { useEffect, useState } from 'react';
 import { UserContext } from './user.context';
 import { UserContextProviderProps } from './UserContextProviderProps';
-import { IUser } from '../Types/IUser';
+import { IUser } from '../interfaces/IUser';
 
 export function UserContextProvider({ children }: UserContextProviderProps) {
   const [users, setUsers] = useLocalStorage<IUser[]>('users', []);

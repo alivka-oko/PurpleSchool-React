@@ -9,25 +9,39 @@ function Card({ data }: CardProps) {
 				<div className={styles['card-top']}>
 					<div className={styles['card-rating']}>
 						<img src='/rating.svg' alt='рейтинг' className={styles['rating']} />
-
-						{data.rating}
+						{data['#RANK']}
 					</div>
-					<Link to={`/movie/${data.id}`}>
-						<img
-							src={data.posterUrl}
-							alt={'Постер ' + data.title}
-							className={styles['card-image']}
-						/>
+					<Link to={`/movie/${data['#IMDB_ID']}`}>
+						{data['#IMG_POSTER'] ? (
+							<img
+								src={data['#IMG_POSTER']}
+								alt={'Постер ' + data['#TITLE']}
+								className={styles['card-image']}
+							/>
+						) : (
+							<>
+								{' '}
+								<img
+									src={'/imagePlug.png'}
+									alt={'Постер ' + data['#TITLE']}
+									className={styles['card-image']}
+								/>
+							</>
+						)}
 					</Link>
 				</div>
 				<div className={styles['card-bottom']}>
-					<div className={styles['card-title']}>{data.title}</div>
+					<div className={styles['card-title']}>{data['#TITLE']}</div>
 					<button className={styles['card-favorite-button']}>
 						<img src='/like.svg' alt='в избранное' /> В избранное
 					</button>
 				</div>
 			</div>
-			<img src={data.posterUrl} alt='' className={styles['card-bg-image']} />
+			<img
+				src={data['#IMG_POSTER']}
+				alt=''
+				className={styles['card-bg-image']}
+			/>
 		</div>
 	);
 }

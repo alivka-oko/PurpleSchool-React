@@ -2,13 +2,11 @@ import styles from './LoginForm.module.css';
 import Input from '../Input/Input';
 import Button from '../Button/Button';
 import Title from '../Title/Title';
-import { ChangeEvent, FormEvent, InputEvent, useEffect, useRef } from 'react';
+import { ChangeEvent, FormEvent, useEffect, useRef } from 'react';
 import { useReducer, useContext } from 'react';
 import { formReducer, INITIAL_STATE } from './LoginForm.state';
 import { UserContext } from '../../context/user.context';
-import { useNavigate } from "react-router";
 function LoginForm() {
-  let navigate = useNavigate();
 	const { login } = useContext(UserContext);
 	const [formState, dispatchForm] = useReducer(formReducer, INITIAL_STATE);
 	const { values, isFormReadyToSubmit, isValid } = formState;
@@ -37,7 +35,6 @@ function LoginForm() {
 		if (isFormReadyToSubmit) {
 			login(values.login);
 			dispatchForm({ type: 'RESET' });
-			navigate('/');
 		}
 	}, [login, isFormReadyToSubmit, values.login]);
 
