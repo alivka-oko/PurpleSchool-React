@@ -1,4 +1,4 @@
-import { ICardData } from '../../assets/data/mockData';
+import { IMovie } from '../../interfaces/IMovie';
 export interface CardsProps {
-  data: ICardData[];
+  data: IMovie[];
 }
