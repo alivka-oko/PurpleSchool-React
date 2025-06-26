@@ -5,19 +5,19 @@ import { IMovieDetails } from '../../interfaces/IMovieDetails';
 import { ErrorPage } from '../ErrorPage/ErrorPage';
 
 export function Movie() {
-	const { data } = useLoaderData() as { data: IMovieDetails };
-	return (
-		<>
-			<Suspense fallback={<Loading />}>
-				<Await
-					resolve={data}
-					errorElement={<ErrorPage message='Не удалось загрузить данные' />}
-				>
-					{(movie) => {
-						return <>Title: {movie.short.name}</>;
-					}}
-				</Await>
-			</Suspense>
-		</>
-	);
+  const { data } = useLoaderData() as { data: IMovieDetails };
+  return (
+    <>
+      <Suspense fallback={<Loading />}>
+        <Await
+          resolve={data}
+          errorElement={<ErrorPage message='Не удалось загрузить данные' />}
+        >
+          {(movie) => {
+            return <>Title: {movie.short.name}</>;
+          }}
+        </Await>
+      </Suspense>
+    </>
+  );
 }

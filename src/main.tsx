@@ -12,57 +12,57 @@ import axios from 'axios';
 import { PREFIX_URL } from './helpers/api';
 import { AuthRequire } from './helpers/AuthRequire';
 const routes = createBrowserRouter([
-	{
-		path: '/',
-		element: <Layout />,
-		children: [
-			{
-				path: '/',
-				element: (
-					<AuthRequire>
-						<Home />
-					</AuthRequire>
-				),
-			},
-			{
-				path: 'login',
-				element: <Login />,
-			},
-			{
-				path: 'favorites',
-				element: (
-					<AuthRequire>
-						<Favorites />
-					</AuthRequire>
-				),
-			},
-			{
-				path: 'movie/:id',
-				errorElement: <>Ошибка</>,
-				element: <Movie />,
-				loader: ({ params }) => {
-					return {
-						data: new Promise((resolve, reject) => {
-							axios
-								.get(PREFIX_URL + `/?tt=${params.id}`)
-								.then((response) => resolve(response.data))
-								.catch((err) => {
-									reject(err);
-								});
-						}),
-					};
-				},
-			},
-			{
-				path: '*',
-				element: <ErrorPage />,
-			},
-		],
-	},
+  {
+    path: '/',
+    element: <Layout />,
+    children: [
+      {
+        path: '/',
+        element: (
+          <AuthRequire>
+            <Home />
+          </AuthRequire>
+        )
+      },
+      {
+        path: 'login',
+        element: <Login />
+      },
+      {
+        path: 'favorites',
+        element: (
+          <AuthRequire>
+            <Favorites />
+          </AuthRequire>
+        )
+      },
+      {
+        path: 'movie/:id',
+        errorElement: <>Ошибка</>,
+        element: <Movie />,
+        loader: ({ params }) => {
+          return {
+            data: new Promise((resolve, reject) => {
+              axios
+                .get(PREFIX_URL + `/?tt=${params.id}`)
+                .then((response) => resolve(response.data))
+                .catch((err) => {
+                  reject(err);
+                });
+            })
+          };
+        }
+      },
+      {
+        path: '*',
+        element: <ErrorPage />
+      }
+    ]
+  }
 ]);
 
 createRoot(document.getElementById('root')!).render(
-	<StrictMode>
-		<RouterProvider router={routes}></RouterProvider>
-	</StrictMode>
+  <StrictMode>
+    <RouterProvider router={routes}></RouterProvider>
+  </StrictMode>
 );

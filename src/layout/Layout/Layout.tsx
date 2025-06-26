@@ -1,6 +1,5 @@
 import Header from '../Header/Header';
 import Menu from '../../components/Menu/Menu';
-import './Layout.module.css';
 import { UserContextProvider } from '../../context/UserContextProvider';
 import Body from '../Body/Body';
 import { Outlet } from 'react-router-dom';

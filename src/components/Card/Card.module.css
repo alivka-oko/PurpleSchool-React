@@ -1,98 +1,98 @@
 .card {
-	width: 282px;
-	border-radius: 12px;
-	position: relative;
-	overflow: hidden;
-	transition: box-shadow 0.15s ease-in;
+  width: 282px;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.15s ease-in;
 }
 /* .card:has(.card-image:hover) {
   box-shadow: #7b6ef6 0 0 80px -50px;
 } */
 .card:hover {
-	box-shadow: #7b6ef6 0 0 80px -50px;
+  box-shadow: #7b6ef6 0 0 80px -50px;
 }
 .card-bg-image {
-	position: absolute;
-	width: 90%;
-	z-index: -1;
-	height: 90%;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+  position: absolute;
+  width: 90%;
+  z-index: -1;
+  height: 90%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 .card-image {
-	border-radius: 8px;
-	width: 266px;
-	height: 400px;
-	object-fit: cover;
-	transition: box-shadow 0.1s ease-in;
+  border-radius: 8px;
+  width: 266px;
+  height: 400px;
+  object-fit: cover;
+  transition: box-shadow 0.1s ease-in;
 }
 .card-content {
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	padding: 8px 8px 16px;
-	gap: 16px;
-	height: 100%;
-	background: rgba(32, 40, 62, 0.8);
-	backdrop-filter: blur(40px);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 8px 8px 16px;
+  gap: 16px;
+  height: 100%;
+  background: rgba(32, 40, 62, 0.8);
+  backdrop-filter: blur(40px);
 }
 .card-top {
-	position: relative;
+  position: relative;
 }
 .card-title {
-	font-weight: 600;
-	font-size: 16px;
-	line-height: 24px;
-	letter-spacing: 0.02em;
-	color: #ebeef5;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.02em;
+  color: #ebeef5;
 }
 
 .card-rating {
-	position: absolute;
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	padding: 4px 8px;
-	gap: 4px;
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 4px 8px;
+  gap: 4px;
 
-	height: 32px;
+  height: 32px;
 
-	background: rgba(0, 0, 0, 0.65);
-	backdrop-filter: blur(4px);
-	border-radius: 8px;
-	font-weight: 400;
-	font-size: 16px;
-	line-height: 24px;
-	color: #ffad49;
-	top: 16px;
-	left: 16px;
-	transform: translate(-8px, -8px);
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(4px);
+  border-radius: 8px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #ffad49;
+  top: 16px;
+  left: 16px;
+  transform: translate(-8px, -8px);
 }
 
 .card-favorite-button {
-	font-weight: 600;
-	font-size: 16px;
-	line-height: 24px;
-	letter-spacing: 0.02em;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.02em;
 
-	color: #7b6ef6;
-	background: transparent;
-	border: none;
-	cursor: pointer;
+  color: #7b6ef6;
+  background: transparent;
+  border: none;
+  cursor: pointer;
 
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	gap: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
 
 .card-bottom {
-	padding: 8px;
-	display: flex;
-	flex-direction: column;
-	gap: 16px;
-	align-items: flex-start;
-	flex: 1;
-	justify-content: space-between;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-start;
+  flex: 1;
+  justify-content: space-between;
 }

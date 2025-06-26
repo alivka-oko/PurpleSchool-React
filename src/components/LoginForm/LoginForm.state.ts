@@ -9,12 +9,12 @@ interface IInitalState {
 }
 export const INITIAL_STATE: IInitalState = {
   values: {
-    login: '',
+    login: ''
   },
   isValid: {
-    login: true,
+    login: true
   },
-  isFormReadyToSubmit: false,
+  isFormReadyToSubmit: false
 };
 
 type typeAction = 'SET_VALUE' | 'SUBMIT' | 'RESET' | 'RESET_VALIDITY';
@@ -28,17 +28,17 @@ export function formReducer(state: IInitalState, action: Action) {
         ...state,
         values: {
           ...state.values,
-          ...action.payload,
-        },
+          ...action.payload
+        }
       };
     case 'SUBMIT': {
       const loginInput = state.values.login !== '';
       return {
         ...state,
         isValid: {
-          login: loginInput,
+          login: loginInput
         },
-        isFormReadyToSubmit: loginInput,
+        isFormReadyToSubmit: loginInput
       };
     }
     case 'RESET':
@@ -46,7 +46,7 @@ export function formReducer(state: IInitalState, action: Action) {
     case 'RESET_VALIDITY':
       return {
         ...state,
-        isValid: INITIAL_STATE.isValid,
+        isValid: INITIAL_STATE.isValid
       };
   }
 }
