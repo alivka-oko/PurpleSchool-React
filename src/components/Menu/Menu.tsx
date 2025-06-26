@@ -4,9 +4,14 @@ import cn from 'classnames';
 import { UserContext } from '../../context/user.context';
 import { IUserContext } from '../../interfaces/IUserConext';
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
 
 function Menu() {
   const { loggedUser, logout } = useContext<IUserContext>(UserContext);
+  const favoriteCounter = useSelector(
+    (s: RootState) => s.favorites.movies.length
+  );
   return (
     <div className={styles['menu']}>
       <NavLink
@@ -24,6 +29,7 @@ function Menu() {
         }
       >
         Мои фильмы
+        <span className={styles['counter']}>{favoriteCounter}</span>
       </NavLink>
       {loggedUser && loggedUser.name ? (
         <a href='#' className={cn(styles['user'])}>

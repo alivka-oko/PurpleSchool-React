@@ -11,6 +11,8 @@ import { Movie } from './pages/Movie/Movie';
 import axios from 'axios';
 import { PREFIX_URL } from './helpers/api';
 import { AuthRequire } from './helpers/AuthRequire';
+import { Provider } from 'react-redux';
+import { store } from './store/store';
 const routes = createBrowserRouter([
   {
     path: '/',
@@ -63,6 +65,8 @@ const routes = createBrowserRouter([
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <RouterProvider router={routes}></RouterProvider>
+    <Provider store={store}>
+      <RouterProvider router={routes}></RouterProvider>
+    </Provider>
   </StrictMode>
 );
