@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IMovie } from '../interfaces/IMovie';
 import { IUser } from '../interfaces/IUser';
 import { loadState } from './storage';
+import { RootState } from './store';
 
 export interface UserFavoriteState {
   id?: number;
@@ -11,9 +12,6 @@ export interface UserFavoriteState {
 export interface FavoriteState {
   users: UserFavoriteState[];
 }
-export interface FavoriteLoadState {
-  favorite: FavoriteState;
-}
 
 export interface Actions {
   user: IUser | null;
@@ -22,8 +20,7 @@ export interface Actions {
 export const FAV_PERSISTENT_STATE = 'favorite';
 
 const initialState: FavoriteState = {
-  users:
-    loadState<FavoriteLoadState>(FAV_PERSISTENT_STATE)?.favorite.users ?? []
+  users: loadState<RootState>(FAV_PERSISTENT_STATE)?.favorites.users ?? []
 };
 
 export const favoritesSlice = createSlice({

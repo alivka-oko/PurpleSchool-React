@@ -9,7 +9,7 @@ export const store = configureStore({
 });
 
 store.subscribe(() => {
-  saveState({ favorite: store.getState().favorites }, FAV_PERSISTENT_STATE);
+  saveState({ favorites: store.getState().favorites }, FAV_PERSISTENT_STATE);
 });
 
 export type RootState = ReturnType<typeof store.getState>;
