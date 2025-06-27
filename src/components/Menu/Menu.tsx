@@ -28,7 +28,7 @@ function Menu() {
         }
       >
         Мои фильмы
-        {favoriteList ? (
+        {favoriteList?.movies.length ? (
           <span className={styles['counter']}>
             {favoriteList.movies.length}{' '}
           </span>
