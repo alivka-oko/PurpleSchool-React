@@ -5,14 +5,25 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../store/store';
 import { favoritesActions } from '../../store/favorites.slice';
 import cn from 'classnames';
+import { useContext } from 'react';
+import { UserContext } from '../../context/user.context';
 
 function Card({ data }: CardProps) {
   const dispatch = useDispatch<AppDispatch>();
+  const currentUser = useContext(UserContext).loggedUser;
   const addToFavorite = () => {
-    dispatch(favoritesActions.addToFavorite(data));
+    dispatch(
+      favoritesActions.addToFavorite({
+        user: currentUser,
+        movie: data
+      })
+    );
   };
-  const movies = useSelector((s: RootState) => s.favorites.movies).find(
-    (i) => i['#IMDB_ID'] == data['#IMDB_ID']
+
+  const favoriteCounter = useSelector((s: RootState) => s.favorites.users);
+  const favoriteList = favoriteCounter.find((u) => u.id == currentUser?.id);
+  const inFavorite = favoriteList?.movies.find(
+    (movie) => movie['#IMDB_ID'] == data['#IMDB_ID']
   );
   return (
     <div className={styles['card']}>
@@ -46,10 +57,10 @@ function Card({ data }: CardProps) {
           <button
             onClick={addToFavorite}
             className={cn(styles['card-favorite-button'], {
-              [styles['added']]: movies
+              [styles['added']]: inFavorite
             })}
-          >           
-            {movies ? 'В избранном' : 'В избранное'}
+          >
+            {inFavorite ? 'В избранном' : 'В избранное'}
           </button>
         </div>
       </div>

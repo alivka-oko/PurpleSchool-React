@@ -9,9 +9,8 @@ import { RootState } from '../../store/store';
 
 function Menu() {
   const { loggedUser, logout } = useContext<IUserContext>(UserContext);
-  const favoriteCounter = useSelector(
-    (s: RootState) => s.favorites.movies.length
-  );
+  const favoriteCounter = useSelector((s: RootState) => s.favorites.users);
+  const favoriteList = favoriteCounter.find((u) => u.id == loggedUser?.id);
   return (
     <div className={styles['menu']}>
       <NavLink
@@ -29,7 +28,13 @@ function Menu() {
         }
       >
         Мои фильмы
-        <span className={styles['counter']}>{favoriteCounter}</span>
+        {favoriteList ? (
+          <span className={styles['counter']}>
+            {favoriteList.movies.length}{' '}
+          </span>
+        ) : (
+          <></>
+        )}
       </NavLink>
       {loggedUser && loggedUser.name ? (
         <a href='#' className={cn(styles['user'])}>

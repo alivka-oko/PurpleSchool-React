@@ -1,10 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit';
-import favoriteReducer from './favorites.slice';
+import favoriteReducer, { FAV_PERSISTENT_STATE } from './favorites.slice';
+import { saveState } from './storage';
 
 export const store = configureStore({
   reducer: {
     favorites: favoriteReducer
   }
+});
+
+store.subscribe(() => {
+  saveState({ favorite: store.getState().favorites }, FAV_PERSISTENT_STATE);
 });
 
 export type RootState = ReturnType<typeof store.getState>;
