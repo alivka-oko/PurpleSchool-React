@@ -3,13 +3,13 @@ import Cards from '../../components/Cards/Cards';
 import { RootState } from '../../store/store';
 import Title from '../../components/Title/Title';
 import styles from './favorites.module.css';
-import { useContext, useEffect, useState } from 'react';
-import { UserContext } from '../../context/user.context';
+import { useEffect, useState } from 'react';
 import { IMovie } from '../../interfaces/IMovie';
 import NotFound from '../../components/NotFound/NotFound';
+import getActiveUser from '../../helpers/getActiveUser';
 
 export function Favorites() {
-  const currentUser = useContext(UserContext).loggedUser;
+  const currentUser = getActiveUser();
   const favoriteState = useSelector((s: RootState) => s.favorites.users);
 
   const [favList, setFavList] = useState<IMovie[] | undefined>([]);

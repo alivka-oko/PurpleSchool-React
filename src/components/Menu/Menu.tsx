@@ -1,16 +1,20 @@
-import { useContext } from 'react';
 import styles from './Menu.module.css';
 import cn from 'classnames';
-import { UserContext } from '../../context/user.context';
-import { IUserContext } from '../../interfaces/IUserConext';
 import { NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../../store/store';
+import { UserActions } from '../../store/user.slice';
+import getActiveUser from '../../helpers/getActiveUser';
 
 function Menu() {
-  const { loggedUser, logout } = useContext<IUserContext>(UserContext);
   const favoriteCounter = useSelector((s: RootState) => s.favorites.users);
-  const favoriteList = favoriteCounter.find((u) => u.id == loggedUser?.id);
+  const activeUser = getActiveUser()
+  const favoriteList = favoriteCounter.find((u) => u.id == activeUser?.id);
+  const dispatch = useDispatch<AppDispatch>();
+
+  const logout = () => {
+    dispatch(UserActions.logout());
+  };
   return (
     <div className={styles['menu']}>
       <NavLink
@@ -30,21 +34,21 @@ function Menu() {
         Мои фильмы
         {favoriteList?.movies.length ? (
           <span className={styles['counter']}>
-            {favoriteList.movies.length}{' '}
+            {favoriteList.movies.length}
           </span>
         ) : (
           <></>
         )}
       </NavLink>
-      {loggedUser && loggedUser.name ? (
+      {activeUser ? (
         <a href='#' className={cn(styles['user'])}>
-          {loggedUser.name}{' '}
+          {activeUser.name}
           <img src='/user.svg' alt='иконка пользователя' className='icon' />
         </a>
       ) : (
         ''
       )}
-      {loggedUser && loggedUser.name ? (
+      {activeUser ? (
         <button
           onClick={logout}
           className={cn(styles['menu-link'], styles['login'])}

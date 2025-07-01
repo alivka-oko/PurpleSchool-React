@@ -5,12 +5,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../store/store';
 import { favoritesActions } from '../../store/favorites.slice';
 import cn from 'classnames';
-import { useContext } from 'react';
-import { UserContext } from '../../context/user.context';
+import getActiveUser from '../../helpers/getActiveUser';
 
 function Card({ data }: CardProps) {
   const dispatch = useDispatch<AppDispatch>();
-  const currentUser = useContext(UserContext).loggedUser;
+  const currentUser = getActiveUser()
   const addToFavorite = () => {
     dispatch(
       favoritesActions.addToFavorite({
