@@ -3,7 +3,6 @@ import Input from '../Input/Input';
 import Button from '../Button/Button';
 import Title from '../Title/Title';
 import { ChangeEvent, FormEvent, useEffect, useRef, useState } from 'react';
-import { UserContext } from '../../context/user.context';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../store/store';
 import { UserActions } from '../../store/user.slice';

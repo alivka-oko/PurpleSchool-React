@@ -5,9 +5,6 @@
   overflow: hidden;
   transition: box-shadow 0.15s ease-in;
 }
-/* .card:has(.card-image:hover) {
-  box-shadow: #7b6ef6 0 0 80px -50px;
-} */
 .card:hover {
   box-shadow: #7b6ef6 0 0 80px -50px;
 }
