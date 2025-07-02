@@ -1,11 +1,9 @@
 import { Link } from 'react-router-dom';
 import styles from './Card.module.css';
-import { CardProps } from './CardProps';
 import { FavoriteButton } from '../FavoriteButton/FavoriteButton';
 import { FavoriteMovieState } from '../../store/favorites.slice';
 
 function Card({ data }: { data: FavoriteMovieState }) {
-  console.log(data);
   return (
     <div className={styles['card']}>
       <div className={styles['card-content']}>

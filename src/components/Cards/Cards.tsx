@@ -1,6 +1,5 @@
 import styles from './Cards.module.css';
 import Card from '../Card/Card';
-import { CardsProps } from './CardsProps';
 import { FavoriteMovieState } from '../../store/favorites.slice';
 
 function Cards({ data }: { data: FavoriteMovieState[] }) {

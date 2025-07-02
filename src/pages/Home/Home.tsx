@@ -34,7 +34,7 @@ export function Home() {
       setMovies(data.description);
     } catch (e) {
       if (axios.isAxiosError(e)) {
-        console.log('Ошибка ' + e.message);
+        console.error('Ошибка ' + e.message);
         setError(e.message);
       } else if (e instanceof Error) {
         setError(e.message);
@@ -53,7 +53,7 @@ export function Home() {
     }
   }, [searchQuery]);
 
-  const toCards = (data: IMovie[]): FavoriteMovieState[] => {
+  const MoviestoCards = (data: IMovie[]): FavoriteMovieState[] => {
     const cards = data.map((i) => {
       return {
         id: i['#IMDB_ID'],
@@ -73,7 +73,7 @@ export function Home() {
       {error && <ErrorPage message={error} />}
       {!isLoading && !searchQuery && <></>}
       {!isLoading && searchQuery && movies.length > 0 && (
-        <Cards data={toCards(movies)} />
+        <Cards data={MoviestoCards(movies)} />
       )}
       {!isLoading &&
         !error &&
