@@ -6,16 +6,23 @@ import { RootState } from './store';
 
 export interface UserFavoriteState {
   id?: number;
-  movies: IMovie[];
+  movies: FavoriteMovieState[];
 }
 
 export interface FavoriteState {
   users: UserFavoriteState[];
 }
 
+export interface FavoriteMovieState {
+  id: string;
+  title: string;
+  cover: string;
+  rank: number;
+}
+
 export interface Actions {
   user: IUser | null;
-  movie: IMovie;
+  movie: FavoriteMovieState;
 }
 export const FAV_PERSISTENT_STATE = 'favorite';
 
@@ -41,7 +48,7 @@ export const favoritesSlice = createSlice({
       }
 
       const isExistMovie = isExistUser.movies.find(
-        (movie) => movie['#IMDB_ID'] === action.payload.movie['#IMDB_ID']
+        (movie) => movie.id === action.payload.movie.id
       );
 
       if (isExistMovie) {
@@ -50,7 +57,7 @@ export const favoritesSlice = createSlice({
             return user;
           }
           const index = user.movies.findIndex(
-            (e) => e['#IMDB_ID'] == action.payload.movie['#IMDB_ID']
+            (e) => e.id == action.payload.movie.id
           );
           return user.movies.splice(index, 1);
         });

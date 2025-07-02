@@ -7,17 +7,20 @@ import { useEffect, useState } from 'react';
 import { IMovie } from '../../interfaces/IMovie';
 import NotFound from '../../components/NotFound/NotFound';
 import getActiveUser from '../../helpers/getActiveUser';
+import { FavoriteMovieState } from '../../store/favorites.slice';
 
 export function Favorites() {
   const currentUser = getActiveUser();
-  const favoriteState = useSelector((s: RootState) => s.favorites.users);
+  const favoriteUsersState = useSelector((s: RootState) => s.favorites.users);
 
-  const [favList, setFavList] = useState<IMovie[] | undefined>([]);
+  const [favList, setFavList] = useState<FavoriteMovieState[] | undefined>([]);
   useEffect(() => {
-    if (favoriteState) {
-      setFavList(favoriteState.find((u) => u.id == currentUser?.id)?.movies);
+    if (favoriteUsersState) {
+      setFavList(
+        favoriteUsersState.find((u) => u.id == currentUser?.id)?.movies
+      );
     }
-  }, [favoriteState]);
+  }, [favoriteUsersState]);
   return (
     <div className={styles['favorite-page']}>
       <Title>Избранное</Title>

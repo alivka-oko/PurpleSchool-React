@@ -7,6 +7,7 @@ import axios from 'axios';
 import { Loading } from '../../components/Loading/Loading';
 import NotFound from '../../components/NotFound/NotFound';
 import { ErrorPage } from '../ErrorPage/ErrorPage';
+import { FavoriteMovieState } from '../../store/favorites.slice';
 
 export function Home() {
   const [movies, setMovies] = useState<IMovie[]>([]);
@@ -21,14 +22,17 @@ export function Home() {
       const { data } = await axios.get<{
         description: IMovie[];
         usage: string;
-      }>(`${PREFIX_URL}/?q=${searchQuery}`);
+      }>(`${PREFIX_URL}/`, {
+        params: {
+          q: searchQuery,
+          _: Date.now()
+        }
+      });
       if (!data.description) {
         throw new Error(data.usage);
       }
       setMovies(data.description);
-      setIsLoading(false);
     } catch (e) {
-      setIsLoading(false);
       if (axios.isAxiosError(e)) {
         console.log('Ошибка ' + e.message);
         setError(e.message);
@@ -49,6 +53,19 @@ export function Home() {
     }
   }, [searchQuery]);
 
+  const toCards = (data: IMovie[]): FavoriteMovieState[] => {
+    const cards = data.map((i) => {
+      return {
+        id: i['#IMDB_ID'],
+        title: i['#TITLE'],
+        cover: i['#IMG_POSTER'],
+        rank: i['#RANK']
+      };
+    });
+
+    return cards;
+  };
+
   return (
     <>
       <SearchArea searchQuery={setSearchQuery} />
@@ -56,7 +73,7 @@ export function Home() {
       {error && <ErrorPage message={error} />}
       {!isLoading && !searchQuery && <></>}
       {!isLoading && searchQuery && movies.length > 0 && (
-        <Cards data={movies} />
+        <Cards data={toCards(movies)} />
       )}
       {!isLoading &&
         !error &&

@@ -2,12 +2,14 @@ import { MovieCardProps } from './MovieCardProps';
 import styles from './MovieCard.module.css';
 import { FavoriteButton } from '../FavoriteButton/FavoriteButton';
 import { NavLink } from 'react-router-dom';
+import { FavoriteMovieState } from '../../store/favorites.slice';
 
 function MovieCard({ data }: MovieCardProps) {
-  const dataForFavorite = {
+  const dataForFavorite: FavoriteMovieState = {
     id: data.top.id,
     title: data.short.name,
-    cover: data.short.image
+    cover: data.short.image,
+    rank: data.short.aggregateRating.ratingCount
   };
 
   const convertDate = (day: number, month: number, year: number): string => {
@@ -48,7 +50,7 @@ function MovieCard({ data }: MovieCardProps) {
             <div className={styles['rating']}>
               {data.main.ratingsSummary.aggregateRating}
             </div>
-            {/* <FavoriteButton data={data.imdbId}/> */}
+            <FavoriteButton data={dataForFavorite} />
           </div>
           <div className={styles['info-line']}>
             <p className={styles['label']}>Тип</p>
