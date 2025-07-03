@@ -1,17 +1,16 @@
-import { useContext } from 'react';
+import { Navigate } from 'react-router-dom';
 import LoginForm from '../../components/LoginForm/LoginForm';
-import { UserContext } from '../../context/user.context';
-import { Navigate, useNavigate } from 'react-router-dom';
+import getActiveUser from '../../helpers/getActiveUser';
 
 export function Login() {
-	const { loggedUser } = useContext(UserContext);
-	if (loggedUser) {
-		return <Navigate to='/'></Navigate>;
-	} else {
-		return (
-			<>
-				<LoginForm />
-			</>
-		);
-	}
+  const loggedUser = getActiveUser();
+  if (loggedUser) {
+    return <Navigate to='/'></Navigate>;
+  } else {
+    return (
+      <>
+        <LoginForm />
+      </>
+    );
+  }
 }

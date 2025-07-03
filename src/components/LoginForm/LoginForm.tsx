@@ -2,47 +2,46 @@ import styles from './LoginForm.module.css';
 import Input from '../Input/Input';
 import Button from '../Button/Button';
 import Title from '../Title/Title';
-import { ChangeEvent, FormEvent, useEffect, useRef } from 'react';
-import { useReducer, useContext } from 'react';
-import { formReducer, INITIAL_STATE } from './LoginForm.state';
-import { UserContext } from '../../context/user.context';
+import { ChangeEvent, FormEvent, useEffect, useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../../store/store';
+import { UserActions } from '../../store/user.slice';
 function LoginForm() {
-  const { login } = useContext(UserContext);
-  const [formState, dispatchForm] = useReducer(formReducer, INITIAL_STATE);
-  const { values, isFormReadyToSubmit, isValid } = formState;
+  const [inputValue, setInputValue] = useState('');
+  const [inputValidity, setInputValidity] = useState(true);
+  const dispatch = useDispatch<AppDispatch>();
   const loginObject = useRef<HTMLInputElement>(null);
 
-  const send = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    isValid.login = true;
-    dispatchForm({ type: 'SUBMIT' });
-  };
-
-  useEffect(() => {
-    let timerId: number | undefined;
-    if (!isValid.login && loginObject.current) {
+  function checkValidity() {
+    if (loginObject.current?.value == '') {
+      setInputValidity(false);
       loginObject.current.focus();
+      return false;
+    }
+    return true;
+  }
+  useEffect(() => {
+    let timerId: number;
+    if (!inputValidity) {
       timerId = setTimeout(() => {
-        dispatchForm({ type: 'RESET_VALIDITY' });
+        setInputValidity(true);
       }, 1000);
     }
     return () => {
       clearTimeout(timerId);
     };
-  }, [isValid]);
+  }, [inputValidity]);
 
-  useEffect(() => {
-    if (isFormReadyToSubmit) {
-      login(values.login);
-      dispatchForm({ type: 'RESET' });
+  const send = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!checkValidity()) {
+      return;
     }
-  }, [login, isFormReadyToSubmit, values.login]);
+    dispatch(UserActions.login(inputValue));
+  };
 
   const inputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    dispatchForm({
-      type: 'SET_VALUE',
-      payload: { [e.target.name]: e.target.value }
-    });
+    setInputValue(e.target.value);
   };
 
   return (
@@ -55,8 +54,8 @@ function LoginForm() {
           placeholder='Ваше имя'
           onChange={inputChange}
           name='login'
-          value={values.login}
-          isValid={isValid.login}
+          value={inputValue}
+          isValid={inputValidity}
           ref={loginObject}
         ></Input>
         <Button className={styles['button']}>Войти в профиль</Button>

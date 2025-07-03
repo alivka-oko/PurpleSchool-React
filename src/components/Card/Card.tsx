@@ -1,21 +1,22 @@
 import { Link } from 'react-router-dom';
 import styles from './Card.module.css';
-import { CardProps } from './CardProps';
+import { FavoriteButton } from '../FavoriteButton/FavoriteButton';
+import { FavoriteMovieState } from '../../store/favorites.slice';
 
-function Card({ data }: CardProps) {
+function Card({ data }: { data: FavoriteMovieState }) {
   return (
     <div className={styles['card']}>
       <div className={styles['card-content']}>
         <div className={styles['card-top']}>
           <div className={styles['card-rating']}>
             <img src='/rating.svg' alt='рейтинг' className={styles['rating']} />
-            {data['#RANK']}
+            {data.rank}
           </div>
-          <Link to={`/movie/${data['#IMDB_ID']}`}>
-            {data['#IMG_POSTER'] ? (
+          <Link to={`/movie/${data.id}`}>
+            {data.cover ? (
               <img
-                src={data['#IMG_POSTER']}
-                alt={'Постер ' + data['#TITLE']}
+                src={data.cover}
+                alt={'Постер ' + data.title}
                 className={styles['card-image']}
               />
             ) : (
@@ -23,7 +24,7 @@ function Card({ data }: CardProps) {
                 {' '}
                 <img
                   src={'/imagePlug.png'}
-                  alt={'Постер ' + data['#TITLE']}
+                  alt={'Постер ' + data.title}
                   className={styles['card-image']}
                 />
               </>
@@ -31,17 +32,11 @@ function Card({ data }: CardProps) {
           </Link>
         </div>
         <div className={styles['card-bottom']}>
-          <div className={styles['card-title']}>{data['#TITLE']}</div>
-          <button className={styles['card-favorite-button']}>
-            <img src='/like.svg' alt='в избранное' /> В избранное
-          </button>
+          <div className={styles['card-title']}>{data.title}</div>
+          <FavoriteButton data={data}></FavoriteButton>
         </div>
       </div>
-      <img
-        src={data['#IMG_POSTER']}
-        alt=''
-        className={styles['card-bg-image']}
-      />
+      <img src={data.cover} alt='' className={styles['card-bg-image']} />
     </div>
   );
 }

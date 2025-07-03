@@ -1,0 +1,6 @@
+.favorite-page {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 80px 0;
+}
