@@ -1,13 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../store/store';
-import {
-  FavoriteMovieState,
-  favoritesActions
-} from '../../store/favorites.slice';
+import { favoritesActions } from '../../store/favorites.slice';
 import cn from 'classnames';
 import getActiveUser from '../../helpers/getActiveUser';
 import styles from './FavoriteButton.module.css';
-export function FavoriteButton({ data }: { data: FavoriteMovieState }) {
+import { FavoriteMovie } from '../../interfaces/FavoriteSlice';
+export function FavoriteButton({ data }: { data: FavoriteMovie }) {
   const dispatch = useDispatch<AppDispatch>();
   const currentUser = getActiveUser();
   const addToFavorite = () => {

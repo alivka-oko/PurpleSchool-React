@@ -7,7 +7,7 @@ import axios from 'axios';
 import { Loading } from '../../components/Loading/Loading';
 import NotFound from '../../components/NotFound/NotFound';
 import { ErrorPage } from '../ErrorPage/ErrorPage';
-import { FavoriteMovieState } from '../../store/favorites.slice';
+import { FavoriteMovie } from '../../interfaces/FavoriteSlice';
 
 export function Home() {
   const [movies, setMovies] = useState<IMovie[]>([]);
@@ -53,7 +53,7 @@ export function Home() {
     }
   }, [searchQuery]);
 
-  const MoviestoCards = (data: IMovie[]): FavoriteMovieState[] => {
+  const MoviestoCards = (data: IMovie[]): FavoriteMovie[] => {
     const cards = data.map((i) => {
       return {
         id: i['#IMDB_ID'],

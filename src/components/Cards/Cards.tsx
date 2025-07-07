@@ -1,8 +1,7 @@
 import styles from './Cards.module.css';
 import Card from '../Card/Card';
-import { FavoriteMovieState } from '../../store/favorites.slice';
-
-function Cards({ data }: { data: FavoriteMovieState[] }) {
+import { FavoriteMovie } from '../../interfaces/FavoriteSlice';
+function Cards({ data }: { data: FavoriteMovie[] }) {
   return (
     <div className={styles['cards']}>
       {data.map((item) => {
