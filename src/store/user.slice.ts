@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IUser } from '../interfaces/IUser';
 import { loadState } from './storage';
+import { USER_PERSISTENT_STATE } from '../helpers/persistentState';
 
-export const USER_PERSISTENT_STATE = 'user';
 
 interface UserInitialState {
   activeUser: IUser | null;

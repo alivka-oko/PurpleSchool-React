@@ -2,10 +2,10 @@ import { MovieCardProps } from './MovieCardProps';
 import styles from './MovieCard.module.css';
 import { FavoriteButton } from '../FavoriteButton/FavoriteButton';
 import { NavLink } from 'react-router-dom';
-import { FavoriteMovieState } from '../../store/favorites.slice';
+import { FavoriteMovie } from '../../interfaces/FavoriteSlice';
 
 function MovieCard({ data }: MovieCardProps) {
-  const dataForFavorite: FavoriteMovieState = {
+  const dataForFavorite: FavoriteMovie = {
     id: data.top.id,
     title: data.short.name,
     cover: data.short.image,
@@ -88,7 +88,7 @@ function MovieCard({ data }: MovieCardProps) {
         <h2 className={styles['small-title']}>Отзывы</h2>
         <div className={styles['area']}>
           <div className={styles['review-card']}>
-            <div className={styles['top']}>
+            <div className={styles['review-card__top']}>
               <p className={styles['review-title']}>{data.short.review.name}</p>
               <p className={styles['review-title']}>
                 {data.short.review.dateCreated}

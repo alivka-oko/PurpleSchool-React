@@ -101,10 +101,11 @@
   gap: 16px;
 }
 
-.review-card .top {
+.review-card__top {
   display: flex;
   justify-content: space-between;
 }
+
 .review-title {
   font-weight: 700;
   font-size: 20px;
