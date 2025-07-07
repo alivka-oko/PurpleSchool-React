@@ -1,32 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IMovie } from '../interfaces/IMovie';
-import { IUser } from '../interfaces/IUser';
 import { loadState } from './storage';
 import { RootState } from './store';
+import { FAV_PERSISTENT_STATE } from '../helpers/persistentState';
+import { FavoriteActionPayload , FavoritesState, UserFavorites } from '../interfaces/FavoriteSlice';
 
-export interface UserFavoriteState {
-  id?: number;
-  movies: FavoriteMovieState[];
-}
-
-export interface FavoriteState {
-  users: UserFavoriteState[];
-}
-
-export interface FavoriteMovieState {
-  id: string;
-  title: string;
-  cover: string;
-  rank: number;
-}
-
-export interface Actions {
-  user: IUser | null;
-  movie: FavoriteMovieState;
-}
-export const FAV_PERSISTENT_STATE = 'favorite';
-
-const initialState: FavoriteState = {
+const initialState: FavoritesState = {
   users: loadState<RootState>(FAV_PERSISTENT_STATE)?.favorites.users ?? []
 };
 
@@ -34,12 +12,12 @@ export const favoritesSlice = createSlice({
   name: 'favorites',
   initialState,
   reducers: {
-    addToFavorite: (state, action: PayloadAction<Actions>) => {
+    addToFavorite: (state, action: PayloadAction<FavoriteActionPayload>) => {
       const isExistUser = state.users.find((user) => {
         return user.id === action.payload.user?.id;
       });
       if (!isExistUser) {
-        const newUser: UserFavoriteState = {
+        const newUser: UserFavorites = {
           id: action.payload.user?.id,
           movies: [action.payload.movie]
         };
